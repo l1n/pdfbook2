@@ -1,7 +1,7 @@
 # pdfbook2 - transform pdf files to booklets
 
-    pdfbook2 v1.4 (https://github.com/jenom/pdfbook2)
-    (c) 2015 - 2020 Johannes Neumann (http://www.neumannjo.de)
+    pdfbook2 v1.5 (https://github.com/jenom/pdfbook2)
+    (c) 2015 - 2024 Johannes Neumann (http://www.neumannjo.de)
     licensed under GPLv3 (http://www.gnu.org/licenses/gpl-3.0)
     based on pdfbook by David Firth with help from Marco Pessotto
     
@@ -16,6 +16,9 @@
     order to discard unnecessary white spaces. In this process, all pages are
     cropped to the same dimensions. Extra margins can be defined at the edges of 
     the booklet and in the middle where the binding occurs.
+    
+    Optional fold and cut line guides can be added to help with assembly of the
+    final booklet.
     
     The OUTPUT is written to INPUT-book.pdf. Existing files will be overwritten.
     All input files are processed seperatly.
@@ -44,7 +47,7 @@
     
 ## REQUIREMENTS
 
-    python 3.6, pdfjam, pdfcrop and their dependencies.
+    python 3.6, pdfjam, pdfcrop, texlive with tikz package, and their dependencies.
     
 ## EXAMPLES
 
@@ -70,6 +73,12 @@
         pdfbook2 input1.pdf input2.pdf
         
     which will result in input1-book.pdf and input2-book.pdf.
+
+    To add fold and cut guides to help with assembly:
+        
+        pdfbook2 --fold-lines input.pdf        # adds center fold line
+        pdfbook2 --cut-lines input.pdf         # adds edge cut marks
+        pdfbook2 --fold-lines --cut-lines input.pdf  # adds both types of guides
     
 ## USAGE
 
@@ -102,6 +111,13 @@
         --bottom-margin=INT, -b INT
                 Defines the bottom margin in the booklet (default: 30)
 
+    GUIDE LINES
+
+        --fold-lines
+                Add fold line guides to the output
+        --cut-lines
+                Add cut line guides to the output
+
     ADVANCED
 
         --signature=INT
@@ -113,6 +129,11 @@
                 Resolution used by ghostscript in bp (default: 72)
 
 ## CHANGELOG
+
+    1.5 2024/11/30
+    
+        -   added fold and cut line guides
+        -   added tikz package requirement for guide lines
 
     1.4 2020/01/20
     
